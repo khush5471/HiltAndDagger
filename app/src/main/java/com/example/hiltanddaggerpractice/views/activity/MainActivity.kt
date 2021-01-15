@@ -9,7 +9,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    //    private val viewModel:WeatherViewModel by viewModels()
+//        private val viewModel: WeatherViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -19,7 +19,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.container,
                 WeatherFragment()
             )
-//            .addToBackStack(TestFragment::class.java.canonicalName)
             .commitAllowingStateLoss()
     }
 
