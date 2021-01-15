@@ -6,13 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+//import androidx.fragment.app.viewModels
 import com.example.hiltanddaggerpractice.R
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class WeatherFragment : Fragment() {
 
     private val mViewModel: WeatherViewModel by viewModels()
+
+
+    @Inject
+    lateinit var testOne: TestOne
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,7 +31,10 @@ class WeatherFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        mViewModel.getWeather("montreal")
+        testOne.helloTestOne()
+        testOne.helloTestTwo()
+
+        mViewModel.getWeather("montreal")
     }
 
 }

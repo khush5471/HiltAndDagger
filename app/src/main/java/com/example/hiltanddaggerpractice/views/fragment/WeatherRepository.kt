@@ -7,11 +7,8 @@ import retrofit2.Response
 import java.util.*
 import javax.inject.Inject
 
-class WeatherRepository @Inject constructor() {
+class WeatherRepository @Inject constructor(private val mService: WebService) {
 
-
-    @Inject
-    lateinit var mService: WebService
 
     fun getWeatherFromCity(city: String) {
         mService.getCityWeather(city, "1de6a975068f98520e6710c07429c7bd")
@@ -23,6 +20,8 @@ class WeatherRepository @Inject constructor() {
                 override fun onResponse(call: Call<Objects>, response: Response<Objects>) {
                 }
             })
+
+//        mService.getCityWeather(city,"")
     }
 }
 //1de6a975068f98520e6710c07429c7bd
