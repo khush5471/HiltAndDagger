@@ -18,7 +18,7 @@ class WeatherFragment : Fragment() {
     private val mViewModel: WeatherViewModel by viewModels()
 
 
-    private var fragmentBinding: FragmentTestBinding? = null
+    private lateinit var fragmentBinding: FragmentTestBinding
 
     //    lateinit var mViewModel: WeatherViewModel
     private val binding get() = fragmentBinding!!
@@ -34,7 +34,7 @@ class WeatherFragment : Fragment() {
     ): View? {
 
         fragmentBinding = FragmentTestBinding.inflate(layoutInflater, container, false)
-        val view = binding.root
+        val view = fragmentBinding.root
 //        return inflater.inflate(R.layout.fragment_test, container, false)
         return view
     }
@@ -47,7 +47,7 @@ class WeatherFragment : Fragment() {
 
 //         val mm=ViewModelProvider(this).get(WeatherViewModel::class.java)
         addSubscribers()
-        buttonSearch.setOnClickListener {
+        fragmentBinding.buttonSearch.setOnClickListener {
             val city = edtEnterCity.text.toString()
             mViewModel.getWeather(city)
 
@@ -71,6 +71,6 @@ class WeatherFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        fragmentBinding = null
+//        fragmentBinding = null
     }
 }

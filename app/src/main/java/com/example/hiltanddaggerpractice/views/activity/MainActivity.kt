@@ -2,21 +2,22 @@ package com.example.hiltanddaggerpractice.views.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.hiltanddaggerpractice.R
+import com.example.hiltanddaggerpractice.databinding.ActivityMainBinding
 import com.example.hiltanddaggerpractice.views.fragment.WeatherFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-//        private val viewModel: WeatherViewModel by viewModels()
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-//        viewModel.getWeather("montreal")
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
         supportFragmentManager.beginTransaction()
             .replace(
-                R.id.container,
+                binding.container.id,
                 WeatherFragment()
             )
             .commitAllowingStateLoss()
