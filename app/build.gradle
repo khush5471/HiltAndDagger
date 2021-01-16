@@ -34,6 +34,11 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()//this dependency is used to handle no argument constructer when hilt uses viewModels()
     }
+
+    //for viewbinding
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {

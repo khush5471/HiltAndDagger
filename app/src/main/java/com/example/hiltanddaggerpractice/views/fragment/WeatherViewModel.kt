@@ -5,7 +5,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import java.util.*
+import com.example.hiltanddaggerpractice.model.WeatherResponse
 
 
 class WeatherViewModel @ViewModelInject constructor(
@@ -14,12 +14,14 @@ class WeatherViewModel @ViewModelInject constructor(
 ) :
     ViewModel() {
 
-    val mGetWeather = MutableLiveData<Objects>()
+    val mGetWeather = MutableLiveData<WeatherResponse>()
 
 
     fun getWeather(city: String) {
 //        mGetWeather.value
-        repository.getWeatherFromCity(city)
+        repository.getWeatherFromCity(city, {
+            mGetWeather.value = it
+        })
     }
 
 }

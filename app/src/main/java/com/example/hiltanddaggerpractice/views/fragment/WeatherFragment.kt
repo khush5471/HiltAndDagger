@@ -6,15 +6,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.hiltanddaggerpractice.R
+import androidx.lifecycle.Observer
+import com.example.hiltanddaggerpractice.databinding.FragmentTestBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_test.*
+
 
 @AndroidEntryPoint
 class WeatherFragment : Fragment() {
 
     private val mViewModel: WeatherViewModel by viewModels()
 
-//    lateinit var mViewModel: WeatherViewModel
+
+    private var fragmentBinding: FragmentTestBinding? = null
+
+    //    lateinit var mViewModel: WeatherViewModel
+    private val binding get() = fragmentBinding!!
 
 
 //    @Inject
@@ -25,7 +32,11 @@ class WeatherFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_test, container, false)
+
+        fragmentBinding = FragmentTestBinding.inflate(layoutInflater, container, false)
+        val view = binding.root
+//        return inflater.inflate(R.layout.fragment_test, container, false)
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -35,8 +46,31 @@ class WeatherFragment : Fragment() {
 //        testOne.helloTestTwo()
 
 //         val mm=ViewModelProvider(this).get(WeatherViewModel::class.java)
+        addSubscribers()
+        buttonSearch.setOnClickListener {
+            val city = edtEnterCity.text.toString()
+            mViewModel.getWeather(city)
 
-        mViewModel.getWeather("montreal")
+        }
     }
 
+
+    fun addSubscribers() {
+        mViewModel.mGetWeather.observe(this, Observer {
+
+            it?.let {
+                txtCityName.text = it.name
+                it.main?.temp?.let {
+                    val temp = it - 273.15
+                    txtTemperature.text = temp.toInt().toString() + " \u2103"
+                }
+
+            }
+        })
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        fragmentBinding = null
+    }
 }

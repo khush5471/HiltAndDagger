@@ -5,12 +5,12 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/txtCheckWeather"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/txtCheckWeather"
-        android:textSize="30dp"
         android:layout_marginTop="50dp"
         android:text="Check Wheather"
+        android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -36,11 +36,31 @@
         app:layout_constraintTop_toBottomOf="@id/edtEnterCity" />
 
     <TextView
+        android:id="@+id/txtTemperature"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
         android:padding="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="okok"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/buttonSearch" />
+
+    <TextView
+        android:id="@+id/txtCityName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="okok"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtTemperature" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
